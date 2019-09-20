@@ -1,0 +1,38 @@
+---
+title: "Time Series Analysis"
+author: "Naveen Kaushik"
+date: "9/20/2019"
+output: html_document
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(fig.width=6, fig.height=3, fig.align="center")
+```
+
+The dataset used is in the file `dataset.xlsx`. The dataset is of Footwear and other personal accessory retailing fpr Australia Capital Territory and the dataset can be found [here](https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/8501.0Jul%202019?OpenDocument).
+
+
+We start with installing the required libraries. 
+
+```{r, message=F}
+library(fpp2)
+library(readxl)
+library(dplyr)
+```
+
+Then we would need to read our data into a time series object.
+
+```{r}
+myts <- read_xlsx("dataset.xlsx", skip=3) %>%
+  pull("29620163") %>%  ts(start = c(1982,4), frequency = 12)
+```
+
+
+
+
+```{r, message=F, warning=F}
+autoplot(myts) +
+  xlab("Year") +
+  ylab("$ Millions") +
+  ggtitle("Footwear and other personal accessory retailing")
+```
