@@ -28,7 +28,7 @@ myts <- read_xlsx("dataset.xlsx", skip=3) %>%
 ```
 
 
-
+We would now plot our series to see how it looks like.
 
 ```{r, message=F, warning=F}
 autoplot(myts) +
@@ -36,3 +36,25 @@ autoplot(myts) +
   ylab("$ Millions") +
   ggtitle("Footwear and other personal accessory retailing")
 ```
+
+The fpp2 library has functions to plot the seasonal and subseries plots as well. 
+
+```{r, message=F, warning=F}
+ggseasonplot(myts, year.labels=TRUE, year.labels.left=TRUE) +
+  xlab("Months") +
+  ylab("$ Millions") +
+  ggtitle("Footwear and other personal accessory retailing")
+```
+
+```{r, message=F, warning=F}
+ggsubseriesplot(myts) +
+  xlab("Months") +
+  ylab("$ Millions") +
+  ggtitle("Footwear and other personal accessory retailing")
+```
+
+
+
+
+
+
